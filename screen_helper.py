@@ -15,8 +15,19 @@ ScreenManager:
         pos_hint:{'center_x':0.5,'center_y':0.5}
         size_hint:(0.2,0.08)
         on_press : root.manager.current='home'
-    self.username = Builder.load_string(username_helper)
-    self.password = Builder.load_string(password_helper)
+    MDTextField:
+        hint_text:"Enter username"
+        helper_text_mode:"on_focus"
+        pos_hint : {'center_x':0.5,'center_y':0.7}
+        size_hint_x:None
+        width:300
+    MDTextField:
+        hint_text:"Enter password"
+        helper_text: "or click on forgot username password"
+        helper_text_mode:"on_focus"
+        pos_hint : {'center_x':0.5,'center_y':0.6}
+        size_hint_x:None
+        width:300
         
 <Home>:
     name:'home'

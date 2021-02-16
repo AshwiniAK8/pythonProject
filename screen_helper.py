@@ -3,6 +3,7 @@ screen_helper = """
 ScreenManager:
     Login:
     Home:
+    Schedule:
     
 <Login>:
     name:'login'
@@ -68,8 +69,8 @@ ScreenManager:
 
                         MDList:
                             OneLineIconListItem:
-                                text: "Schedule"
-                                on_press : root.manager.current='login'
+                                text: "Activites"
+                                on_press : root.manager.current='schedule'
                                 IconLeftWidget:
                                     icon: "face-profile"
                             
@@ -84,8 +85,97 @@ ScreenManager:
 
                             OneLineIconListItem:
                                 text: "Logout"
-
+                                on_press : root.manager.current='login'
                                 IconLeftWidget:
                                     icon: "logout"
-                    
+<Schedule>:
+    name:'schedule'
+    NavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        title: 'Activites'
+                        left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
+                        elevation:10
+                    ScrollView:
+                    DrawerList:
+                        id: md_list
+
+                        MDList:
+                            TwoLineListItem:
+                                text: "Brush Teeth"
+                                secondary_text: "9:00"      
+                            TwoLineListItem:
+                                text: "Eat Breakfast"
+                                secondary_text: "9:30" 
+                            TwoLineListItem:
+                                text: "Study time"
+                                secondary_text: "10:00 - 11:00"
+                            TwoLineListItem:
+                                text: "Music session"
+                                secondary_text: "11:30 - 12:30"
+                            TwoLineListItem:
+                                text: "Leisure time"
+                                secondary_text: "12:30 - 1:00"    
+                            TwoLineListItem:
+                                text: "Eat Lunch"
+                                secondary_text: "1:00"
+                            TwoLineListItem:
+                                text: "Nap Time"
+                                secondary_text: "1:30 - 2:30"                           
+
+
+                                                   
+                    Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                orientation: 'vertical'
+                padding: "8dp"
+                spacing: "8dp"
+                Image:
+                    id: avatar
+                    size_hint: (1,1)
+                    source: "profpic.png"
+                MDLabel:
+                    text: "Name"
+                    font_style: "Subtitle1"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                MDLabel:
+                    text: "email@gmail.com"
+                    size_hint_y: None
+                    font_style: "Caption"
+                    height: self.texture_size[1]
+                ScrollView:
+                    DrawerList:
+                        id: md_list
+
+                        MDList:
+                            OneLineIconListItem:
+                                text: "Home"
+                                on_press : root.manager.current='home'
+                                IconLeftWidget:
+                                    icon: "face-profile"
+                            
+
+
+                            OneLineIconListItem:
+                                text: "Track"
+
+                                IconLeftWidget:
+                                    icon: "upload"
+
+
+                            OneLineIconListItem:
+                                text: "Logout"
+                                on_press : root.manager.current='login'
+                                IconLeftWidget:
+                                    icon: "logout"
+       
+       
+
+
 """

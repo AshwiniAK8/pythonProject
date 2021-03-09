@@ -16,10 +16,13 @@ class Home(Screen):
     pass
 class Schedule(Screen):
     pass
+class Track(Screen):
+    pass
 sm = ScreenManager()
 sm.add_widget(Login(name='login'))
 sm.add_widget(Home(name='home'))
-sm.add_widget(Home(name='schedule'))
+sm.add_widget(Schedule(name='schedule'))
+sm.add_widget(Track(name='track'))
 class Autitech(MDApp):
 
     class ContentNavigationDrawer(BoxLayout):

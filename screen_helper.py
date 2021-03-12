@@ -93,6 +93,11 @@ ScreenManager:
                                     icon: "logout"
 <Track>:
     name:'track'
+    MDRaisedButton:
+        text:"Show location"
+        pos_hint:{'center_x':0.5,'center_y':0.5}
+        size_hint:(0.5,0.08)
+        on_press : root.val1()
     NavigationLayout:
         ScreenManager:
             Screen:
@@ -103,7 +108,7 @@ ScreenManager:
                         left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
                         elevation:10
                     MDLabel:
-                        text: app.lat1
+                        text: "Hi"
                         halign:'center'
                     Widget:
         MDNavigationDrawer:

@@ -6,8 +6,13 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
 from kivy.uix.screenmanager import Screen,ScreenManager
-from testt import d
 from screen_helper import screen_helper
+from kivy.clock import Clock
+from kivy.properties import StringProperty, NumericProperty, ObjectProperty
+
+#from digitalclock import DigitalClock
+import time
+import opc
 from kivy.uix.label import Label
 #from GPS import ss
 
@@ -29,7 +34,7 @@ sm.add_widget(Home(name='home'))
 sm.add_widget(Schedule(name='schedule'))
 sm.add_widget(Track(name='track'))
 class Autitech(MDApp):
-    sensor1 = NumericProperty(0)
+    d = NumericProperty(0)
     sensor2 = NumericProperty(0)
     class ContentNavigationDrawer(BoxLayout):
         pass
@@ -37,16 +42,17 @@ class Autitech(MDApp):
     class DrawerList(ThemableBehavior, MDList):
         pass
 
+    @property
     def build(self):
         try:
             self.arduino = serial.Serial('COM4',9600)
         except:
-        print("unable to connect to arduino :(")
+            print("unable to connect to arduino :(")
 
         Clock.schedule_interval(self.update, 1)
 
         self.theme_cls.primary_palette = 'Green'
-        screen = Builder.load_string(screen_helper)
+        screen = Builder.load_string("screen_helper.kv")
 
         return screen
 

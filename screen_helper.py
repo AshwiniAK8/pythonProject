@@ -1,6 +1,4 @@
 from kivy.lang import Builder
-from testt import d
-
 screen_helper = """
 ScreenManager:
     Login:
@@ -105,7 +103,7 @@ ScreenManager:
                         left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
                         elevation:10
                     MDLabel:
-                        text: str(app.d)
+                        text: lat1
                         halign:'center'
                     Widget:
         MDNavigationDrawer:

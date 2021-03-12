@@ -1,4 +1,5 @@
 import serial
+
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.core.window import Window
@@ -29,8 +30,18 @@ sm.add_widget(Home(name='home'))
 sm.add_widget(Schedule(name='schedule'))
 sm.add_widget(Track(name='track'))
 class Autitech(MDApp):
-    sensor1 = NumericProperty(0)
-    sensor2 = NumericProperty(0)
+    d = 120
+    ser = serial.Serial('COM4', 9600)
+    # b = 'b Latitude in Decimal Degrees : 13.025846\r\n'
+    # a= 'b Longitude in Decimal Degrees : 43.245\r\n'
+    b = str(ser.readline())
+    a = str(ser.readline())
+    print(b)
+    print(a)
+    b1 = b.split()
+    a1 = a.split()
+    lat1 = b1[-1]
+    long1 = a1[-1]
     class ContentNavigationDrawer(BoxLayout):
         pass
 
@@ -38,12 +49,6 @@ class Autitech(MDApp):
         pass
 
     def build(self):
-        try:
-            self.arduino = serial.Serial('COM4',9600)
-        except:
-        print("unable to connect to arduino :(")
-
-        Clock.schedule_interval(self.update, 1)
 
         self.theme_cls.primary_palette = 'Green'
         screen = Builder.load_string(screen_helper)
@@ -52,26 +57,6 @@ class Autitech(MDApp):
 
     def on_start(self):
         pass
-
-    def update(self, *args):
-        arduino = self.arduino
-        data = arduino.read(arduino.inWaiting())
-
-    def update(self, *args):
-        arduino = self.arduino
-        data = arduino.read(arduino.inWaiting())
-        for line in data.split('\n'):
-            try:
-                sensor, value = line.strip().split(' ')
-            except:
-                print("parse error!")
-                continue
-            if sensor == 'A':
-                self.sensor1 = float(value)
-            elif sensor == 'B':
-                self.sensor2 = float(value)
-            else:
-                print("unknown data! {}".format(line))
 
 
 

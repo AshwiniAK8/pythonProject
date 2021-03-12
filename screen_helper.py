@@ -103,7 +103,7 @@ ScreenManager:
                         left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
                         elevation:10
                     MDLabel:
-                        text: lat1
+                        text: app.lat1
                         halign:'center'
                     Widget:
         MDNavigationDrawer:

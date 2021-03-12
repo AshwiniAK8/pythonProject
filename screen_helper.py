@@ -1,4 +1,4 @@
-
+from kivy.lang import Builder
 screen_helper = """
 ScreenManager:
     Login:
@@ -93,6 +93,17 @@ ScreenManager:
                                     icon: "logout"
 <Track>:
     name:'track'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'Capture2.png'
+            
+    MDRaisedButton:
+        text:"Show location"
+        pos_hint:{'center_x':0.5,'center_y':0.5}
+        size_hint:(0.5,0.08)
+        on_press : root.val1()
     NavigationLayout:
         ScreenManager:
             Screen:
@@ -103,7 +114,7 @@ ScreenManager:
                         left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
                         elevation:10
                     MDLabel:
-                        text: 'Hi'
+                        text: "Get the current location of your kid with just a tap!"
                         halign:'center'
                     Widget:
         MDNavigationDrawer:

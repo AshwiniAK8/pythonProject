@@ -7,7 +7,6 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
 from kivy.uix.screenmanager import Screen,ScreenManager
-from testt import d
 from screen_helper import screen_helper
 from kivy.uix.label import Label
 #from GPS import ss
@@ -23,18 +22,8 @@ class Schedule(Screen):
     pass
 class Track(Screen):
     def val1(self):
-        ser = serial.Serial('COM4', 9600)
-        # b = 'b Latitude in Decimal Degrees : 13.025846\r\n'
-        # a= 'b Longitude in Decimal Degrees : 43.245\r\n'
-        b = str(ser.readline())
-        a = str(ser.readline())
-        print(b)
-        print(a)
-        b1 = b.split()
-        a1 = a.split()
-        lat1 = b1[-1]
-        long1 = a1[-1]
-        webbrowser.open('https://www.google.com/maps/search/?api=1&query='+lat1[:-5]+','+long1[:-5])
+        print("i am executed")
+        webbrowser.open("https://www.google.com/maps/place/Bengaluru,+Karnataka/@12.95396,77.4908527,11z/data=!3m1!4b1!4m5!3m4!1s0x3bae1670c9b44e6d:0xf8dfc3e8517e4fe0!8m2!3d12.9715987!4d77.5945627")
 
     pass
 sm = ScreenManager()
@@ -44,7 +33,6 @@ sm.add_widget(Schedule(name='schedule'))
 sm.add_widget(Track(name='track'))
 class Autitech(MDApp):
     d = 120
-
     class ContentNavigationDrawer(BoxLayout):
         pass
 

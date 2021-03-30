@@ -7,7 +7,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
 from kivy.uix.screenmanager import Screen,ScreenManager
-from kivy.graphics import Color, Rectangle
+from testt import d
 from screen_helper import screen_helper
 from kivy.uix.label import Label
 #from GPS import ss

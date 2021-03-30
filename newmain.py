@@ -8,6 +8,7 @@ from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
 from kivy.uix.screenmanager import Screen,ScreenManager
 from screen_helper import screen_helper
+from kivy.graphics import Color, Rectangle
 from kivy.uix.label import Label
 #from GPS import ss
 

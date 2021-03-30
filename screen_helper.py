@@ -99,8 +99,10 @@ ScreenManager:
             size: self.size
             source: 'Capture2.png'
             
-    MDRaisedButton:
+    MDFillRoundFlatIconButton:
         text:"Show location"
+        icon: "crosshairs-gps"
+        md_bg_color: app.theme_cls.primary_color
         pos_hint:{'center_x':0.5,'center_y':0.5}
         size_hint:(0.5,0.08)
         on_press : root.val1()

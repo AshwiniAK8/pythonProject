@@ -1,4 +1,5 @@
 import serial
+
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.core.window import Window
@@ -36,6 +37,7 @@ class Autitech(MDApp):
         pass
 
     def build(self):
+
         self.theme_cls.primary_palette = 'Green'
         screen = Builder.load_string(screen_helper)
 

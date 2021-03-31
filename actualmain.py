@@ -10,6 +10,7 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from screen_helper import screen_helper
 from kivy.graphics import Color, Rectangle
 from kivy.uix.label import Label
+from kivy.clock import Clock
 
 # from GPS import ss
 
@@ -23,12 +24,12 @@ class Login(Screen):
 
 
 class Home(Screen):
-    def sensorrun(self):
 
     pass
 
 
 class Schedule(Screen):
+
     pass
 
 
@@ -58,6 +59,12 @@ class Autitech(MDApp):
         pass
 
     def build(self):
+        def my_repeated_function(data):
+            while(1):
+                print('Hi')
+
+        Clock.schedule_interval(my_repeated_function, 1.0 / 30)
+
         self.theme_cls.primary_palette = 'Green'
         screen = Builder.load_string(screen_helper)
 

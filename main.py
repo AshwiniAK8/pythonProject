@@ -9,7 +9,7 @@ from kivymd.uix.list import MDList
 from kivy.uix.screenmanager import Screen,ScreenManager
 from screen_helper import screen_helper
 from kivy.uix.label import Label
-#from GPS import ss
+from GPS import gps
 
 #from Helper import username_helper,password_helper
 #from navigation_drawer import navigation_helper
@@ -29,7 +29,7 @@ sm.add_widget(Home(name='home'))
 sm.add_widget(Schedule(name='schedule'))
 sm.add_widget(Track(name='track'))
 class Autitech(MDApp):
-    d = 120
+    d = gps
     class ContentNavigationDrawer(BoxLayout):
         pass
 

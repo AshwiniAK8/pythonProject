@@ -10,4 +10,4 @@ b1 = b.split()
 a1 = a.split()
 lat1 = b1[-1]
 long1 = a1[-1]
-ss='https://www.google.com/maps/search/?api=1&query='+lat1[:-5]+','+long1[:-5]
+print('https://www.google.com/maps/search/?api=1&query='+lat1[:-5]+','+long1[:-5])

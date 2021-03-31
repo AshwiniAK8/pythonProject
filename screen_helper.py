@@ -33,6 +33,13 @@ ScreenManager:
         
 <Home>:
     name:'home'
+    MDFillRoundFlatIconButton:
+        text:"Show data"
+        icon: "crosshairs-gps"
+        md_bg_color: app.theme_cls.primary_color
+        pos_hint:{'center_x':0.5,'center_y':0.5}
+        size_hint:(0.5,0.08)
+        on_press : root.sensorrun()
     NavigationLayout:
         ScreenManager:
             Screen:
@@ -83,7 +90,7 @@ ScreenManager:
                                 
                                 
                                 IconLeftWidget:
-                                    icon: "upload"
+                                    icon: "crosshairs-gps"
 
 
                             OneLineIconListItem:
@@ -156,7 +163,7 @@ ScreenManager:
                                 text: "Track"
 
                                 IconLeftWidget:
-                                    icon: "upload"
+                                    icon: "crosshairs-gps"
 
 
                             OneLineIconListItem:
@@ -245,7 +252,7 @@ ScreenManager:
                                 
 
                                 IconLeftWidget:
-                                    icon: "upload"
+                                    icon: "crosshairs-gps"
 
 
                             OneLineIconListItem:

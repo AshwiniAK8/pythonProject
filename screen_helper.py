@@ -165,18 +165,19 @@ ScreenManager:
 
                         MDList:
                             OneLineIconListItem:
-                                text: "Activites"
-                                on_press : root.manager.current='schedule'
+                                text: "Home"
+                                on_press : root.manager.current='home'
                                 IconLeftWidget:
                                     icon: "face-profile"
 
 
 
                             OneLineIconListItem:
-                                text: "Track"
-
+                                text: "Activites"
+                                on_press : root.manager.current='schedule'
                                 IconLeftWidget:
-                                    icon: "crosshairs-gps"
+                                    icon: "face-profile"
+
 
 
                             OneLineIconListItem:

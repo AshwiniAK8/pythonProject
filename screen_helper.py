@@ -1,11 +1,12 @@
 from kivy.lang import Builder
+
 screen_helper = """
 ScreenManager:
     Login:
     Home:
     Schedule:
     Track:
-    
+
 <Login>:
     name:'login'
     Image:
@@ -14,6 +15,8 @@ ScreenManager:
         size_hint:(0.3,0.3)
     MDRaisedButton:
         text:"Login"
+        font_size:18
+        font_name:"Leelawui.ttf"
         pos_hint:{'center_x':0.5,'center_y':0.5}
         size_hint:(0.2,0.08)
         on_press : root.manager.current='home'
@@ -30,10 +33,10 @@ ScreenManager:
         pos_hint : {'center_x':0.5,'center_y':0.6}
         size_hint_x:None
         width:300
-        
+
 <Home>:
     name:'home'
-    
+
     NavigationLayout:
         ScreenManager:
             Screen:
@@ -41,15 +44,21 @@ ScreenManager:
                     orientation: 'vertical'
                     MDToolbar:
                         title: 'Home'
+
                         left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
                         elevation:10
                     MDLabel:
                         text: str(root.number)
+                        font_name:"Leelawui.ttf"
+                        font_size:26
                         halign:'center'
                     MDLabel:
                         text:root.s
+                        font_size:26
+
+                        font_name:"Leelawui.ttf"
                         halign:'center'    
-                    
+
                     Widget:
         MDNavigationDrawer:
             id: nav_drawer
@@ -81,14 +90,14 @@ ScreenManager:
                                 on_press : root.manager.current='schedule'
                                 IconLeftWidget:
                                     icon: "face-profile"
-                            
+
 
 
                             OneLineIconListItem:
                                 text: "Track"
                                 on_press : root.manager.current='track'
-                                
-                                
+
+
                                 IconLeftWidget:
                                     icon: "crosshairs-gps"
 
@@ -105,13 +114,15 @@ ScreenManager:
             pos: self.pos
             size: self.size
             source: 'Capture2.png'
-            
+
     MDFillRoundFlatIconButton:
         text:"Show location"
+        font_name:"Leelawui.ttf"
+        font_size:18
         icon: "crosshairs-gps"
         md_bg_color: app.theme_cls.primary_color
         pos_hint:{'center_x':0.5,'center_y':0.5}
-        size_hint:(0.5,0.08)
+        size_hint:(0.53,0.08)
         on_press : root.val1()
     NavigationLayout:
         ScreenManager:
@@ -124,6 +135,8 @@ ScreenManager:
                         elevation:10
                     MDLabel:
                         text: "Get the current location of your kid with just a tap!"
+                        font_name:"Leelawui.ttf"
+                        font_size:16
                         halign:'center'
                     Widget:
         MDNavigationDrawer:
@@ -156,7 +169,7 @@ ScreenManager:
                                 on_press : root.manager.current='schedule'
                                 IconLeftWidget:
                                     icon: "face-profile"
-                            
+
 
 
                             OneLineIconListItem:
@@ -171,7 +184,7 @@ ScreenManager:
                                 on_press : root.manager.current='login'
                                 IconLeftWidget:
                                     icon: "logout"
-                                    
+
 <Schedule>:
     name:'schedule'
     NavigationLayout:
@@ -208,10 +221,11 @@ ScreenManager:
                                 secondary_text: "1:00"
                             TwoLineListItem:
                                 text: "Nap Time"
-                                secondary_text: "1:30 - 2:30"                           
+                                secondary_text: "1:30 - 2:30" 
 
 
-                                                   
+
+
                     Widget:
         MDNavigationDrawer:
             id: nav_drawer
@@ -243,13 +257,13 @@ ScreenManager:
                                 on_press : root.manager.current='home'
                                 IconLeftWidget:
                                     icon: "face-profile"
-                            
+
 
 
                             OneLineIconListItem:
                                 text: "Track"
                                 on_press : root.manager.current='track'
-                                
+
 
                                 IconLeftWidget:
                                     icon: "crosshairs-gps"
@@ -260,8 +274,8 @@ ScreenManager:
                                 on_press : root.manager.current='login'
                                 IconLeftWidget:
                                     icon: "logout"
-       
-       
+
+
 
 
 """

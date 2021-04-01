@@ -133,7 +133,7 @@ class Autitech(MDApp):
 
 
 
-        self.theme_cls.primary_palette = 'LightBlue'
+        self.theme_cls.primary_palette = 'Pink'
         screen = Builder.load_string(screen_helper)
 
         return screen

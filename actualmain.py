@@ -1,6 +1,9 @@
 import serial
 import webbrowser
-
+import csv
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import IsolationForest
 from kivy.properties import NumericProperty, StringProperty
 from kivymd.app import MDApp
 from kivy.lang import Builder
@@ -20,7 +23,7 @@ from kivy.uix.popup import Popup
 # from Helper import username_helper,password_helper
 # from navigation_drawer import navigation_helper
 Window.size = (340, 580)
-
+global ser
 global i
 i=0
 class Login(Screen):
@@ -30,23 +33,26 @@ class Login(Screen):
 class Home(Screen):
     global i
     i = 0
+    global ser
     ser = serial.Serial('COM4', 9600)
     number = NumericProperty()
     s = StringProperty()
     #number=8
     def __init__(self, **kwargs):
+        global ser
         # The super() builtin
         # returns a proxy object that
         # allows you to refer parent class by 'super'.
         super(Home, self).__init__(**kwargs)
 
         # Create the clock and increment the time by .1 ie 1 second.
-        Clock.schedule_interval(self.increment_time, 0.2)
+        Clock.schedule_interval(self.increment_time, 0.5)
 
         #self.increment_time(0)
 
     # To increase the time / count
     def increment_time(self, interval):
+        global ser
         print("RUN")
         a = str(ser.readline())
         b = str(ser.readline())

@@ -13,7 +13,7 @@ ScreenManager:
         Rectangle:
             pos: self.pos
             size: self.size
-            source: 'loginpic2.jpeg'
+            source: 'loginpic.jpeg'
     Image:
         source: "xx.png"
         pos_hint:{'center_x':0.5,'center_y':0.85}
@@ -46,6 +46,11 @@ ScreenManager:
 
 <Home>:
     name:'home'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'homebg5.jpeg'
     
 
     NavigationLayout:
@@ -61,12 +66,15 @@ ScreenManager:
                     MDLabel:
                         text: str(root.number)
                         font_name:"Leelawui.ttf"
+                        theme_text_color:'Custom'
+                        text_color:1,1,1,1
                         font_size:26
                         halign:'center'
                     MDLabel:
                         text:root.s
                         font_size:26
-
+                        theme_text_color:'Custom'
+                        text_color:1,1,1,1
                         font_name:"Leelawui.ttf"
                         halign:'center'    
 

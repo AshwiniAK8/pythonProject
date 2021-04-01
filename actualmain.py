@@ -135,7 +135,7 @@ class Autitech(MDApp):
 
 
 
-        self.theme_cls.primary_palette = 'Pink'
+        self.theme_cls.primary_palette = 'Indigo'
         screen = Builder.load_string(screen_helper)
 
         return screen

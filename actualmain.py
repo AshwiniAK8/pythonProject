@@ -39,14 +39,13 @@ class Home(Screen):
     s = StringProperty()
     #number=8
     def __init__(self, **kwargs):
-        global ser
         # The super() builtin
         # returns a proxy object that
         # allows you to refer parent class by 'super'.
         super(Home, self).__init__(**kwargs)
 
         # Create the clock and increment the time by .1 ie 1 second.
-        Clock.schedule_interval(self.increment_time, 0.5)
+        Clock.schedule_interval(self.increment_time, 0.3)
 
         #self.increment_time(0)
 
@@ -64,6 +63,8 @@ class Home(Screen):
         BPM = int(BPM1)
         df = pd.read_csv("HR.csv")
         X = df.iloc[0:, 0].to_numpy()
+        print(a)
+        print(b)
         print(BPM)
         self.number = BPM
         # X_last = X[-1]
@@ -119,7 +120,7 @@ class Autitech(MDApp):
 
 
 
-        self.theme_cls.primary_palette = 'Green'
+        self.theme_cls.primary_palette = 'LightBlue'
         screen = Builder.load_string(screen_helper)
 
         return screen

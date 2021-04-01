@@ -91,6 +91,8 @@ class Home(Screen):
             long1 = a1[-1]
             gps = 'https://www.google.com/maps/search/?api=1&query=' + lat1[:-5] + ',' + long1[:-5]
             self.s = "ALERT!"
+        else:
+            self.s = "All good!"
 
     pass
 

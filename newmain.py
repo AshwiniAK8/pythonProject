@@ -12,6 +12,7 @@ from kivy.graphics import Color, Rectangle
 from kivy.uix.label import Label
 #from GPS import ss
 import csv
+from kivy.clock import Clock
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import IsolationForest

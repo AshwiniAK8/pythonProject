@@ -33,13 +33,7 @@ ScreenManager:
         
 <Home>:
     name:'home'
-    MDFillRoundFlatIconButton:
-        text:"Show data"
-        icon: "crosshairs-gps"
-        md_bg_color: app.theme_cls.primary_color
-        pos_hint:{'center_x':0.5,'center_y':0.5}
-        size_hint:(0.5,0.08)
-        on_press : root.sensorrun()
+    
     NavigationLayout:
         ScreenManager:
             Screen:
@@ -49,6 +43,12 @@ ScreenManager:
                         title: 'Home'
                         left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
                         elevation:10
+                    MDLabel:
+                        text: str(root.number)
+                        halign:'center'
+                    MDLabel:
+                        text:root.s
+                        halign:'center'    
                     
                     Widget:
         MDNavigationDrawer:

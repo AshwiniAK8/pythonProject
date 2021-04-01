@@ -1,5 +1,7 @@
 import serial
 import webbrowser
+
+from kivy.properties import NumericProperty, StringProperty
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.core.window import Window
@@ -11,23 +13,64 @@ from screen_helper import screen_helper
 from kivy.graphics import Color, Rectangle
 from kivy.uix.label import Label
 from kivy.clock import Clock
-import serial
-import csv
-import numpy as np
-import pandas as pd
-from sklearn.ensemble import IsolationForest
+from kivy.uix.popup import Popup
+
 # from GPS import ss
 
 # from Helper import username_helper,password_helper
 # from navigation_drawer import navigation_helper
 Window.size = (340, 580)
 
-
+global i
+i=0
 class Login(Screen):
     pass
 
 
 class Home(Screen):
+    global i
+    i = 0
+    ser = serial.Serial('COM4', 9600)
+    number = NumericProperty()
+    s = StringProperty()
+    #number=8
+    def __init__(self, **kwargs):
+        # The super() builtin
+        # returns a proxy object that
+        # allows you to refer parent class by 'super'.
+        super(Home, self).__init__(**kwargs)
+
+        # Create the clock and increment the time by .1 ie 1 second.
+        Clock.schedule_interval(self.increment_time, 0.2)
+
+        #self.increment_time(0)
+
+    # To increase the time / count
+    def increment_time(self, interval):
+        print("RUN")
+        a = str(ser.readline())
+        b = str(ser.readline())
+        bl = str(ser.readline())
+        b1 = bl.split()
+        BPM1 = b1[-1].split()[0].split('\\')[0]
+        if BPM1 == "*****":
+            return
+        BPM = int(BPM1)
+        df = pd.read_csv("HR.csv")
+        X = df.iloc[0:, 0].to_numpy()
+        print(BPM)
+        self.number = BPM
+        # X_last = X[-1]
+        X[-1] = BPM
+        iso = IsolationForest(contamination=0.1)
+        prf = iso.fit_predict(X.reshape(-1, 1))
+        if prf[-1] == -1:
+            bl1 = b.split()
+            a1 = a.split()
+            lat1 = bl1[-1]
+            long1 = a1[-1]
+            gps = 'https://www.google.com/maps/search/?api=1&query=' + lat1[:-5] + ',' + long1[:-5]
+            self.s = "ALERT!"
 
     pass
 
@@ -52,9 +95,9 @@ sm.add_widget(Home(name='home'))
 sm.add_widget(Schedule(name='schedule'))
 sm.add_widget(Track(name='track'))
 
-
 class Autitech(MDApp):
     d = 120
+
 
     class ContentNavigationDrawer(BoxLayout):
         pass
@@ -63,33 +106,12 @@ class Autitech(MDApp):
         pass
 
     def build(self):
-        ser = serial.Serial('COM4', 9600)
-        def my_repeated_function(data):
-            print("RUN")
-            a = str(ser.readline())
-            b = str(ser.readline())
-            bl = str(ser.readline())
-            b1 = bl.split()
-            BPM1 = b1[-1].split()[0].split('\\')[0]
-            if BPM1 =="*****":
-                return
-            BPM = int(BPM1)
-            df = pd.read_csv("HR.csv")
-            X = df.iloc[0:, 0].to_numpy()
-            print(BPM)
-            # X_last = X[-1]
-            X[-1] = BPM
-            iso = IsolationForest(contamination=0.1)
-            prf = iso.fit_predict(X.reshape(-1, 1))
-            if prf[-1] == -1:
-                bl1 = b.split()
-                a1 = a.split()
-                lat1 = bl1[-1]
-                long1 = a1[-1]
-                gps = 'https://www.google.com/maps/search/?api=1&query=' + lat1[:-5] + ',' + long1[:-5]
-                print("ALERT!")
 
-        Clock.schedule_interval(my_repeated_function, 1.0 / 30)
+        global i
+        #i=0
+
+
+
 
         self.theme_cls.primary_palette = 'Green'
         screen = Builder.load_string(screen_helper)

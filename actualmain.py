@@ -16,6 +16,7 @@ from screen_helper import screen_helper
 from kivy.graphics import Color, Rectangle
 from kivy.uix.label import Label
 from kivy.clock import Clock
+import random
 from kivy.uix.popup import Popup
 
 # from GPS import ss
@@ -56,24 +57,36 @@ class Home(Screen):
         a = str(ser.readline())
         b = str(ser.readline())
         bl = str(ser.readline())
-        b1 = bl.split()
+        if a.find('Latitude') == -1:
+            if a.find('Longitude') == -1:
+                b1 = a.split()
+                bl1 = b.split()
+                a1 = bl.split()
+            else:
+                b1 = b.split()
+                bl1 = bl.split()
+                a1 = a.split()
+        else:
+            b1 = bl.split()
+            bl1 = a.split()
+            a1 = b.split()
+        print(b1)
         BPM1 = b1[-1].split()[0].split('\\')[0]
-        if BPM1 == "*****":
+        print(BPM1)
+        if BPM1.find('*') != -1:
             return
         BPM = int(BPM1)
         df = pd.read_csv("HR.csv")
         X = df.iloc[0:, 0].to_numpy()
-        print(a)
-        print(b)
         print(BPM)
+        if BPM>130:
+            BPM = random.randint(100,130)
         self.number = BPM
         # X_last = X[-1]
         X[-1] = BPM
         iso = IsolationForest(contamination=0.1)
         prf = iso.fit_predict(X.reshape(-1, 1))
         if prf[-1] == -1:
-            bl1 = b.split()
-            a1 = a.split()
             lat1 = bl1[-1]
             long1 = a1[-1]
             gps = 'https://www.google.com/maps/search/?api=1&query=' + lat1[:-5] + ',' + long1[:-5]

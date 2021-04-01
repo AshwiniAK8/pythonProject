@@ -9,10 +9,11 @@ while(1):
     a = str(ser.readline())
     b = str(ser.readline())
     bl = str(ser.readline())
+    print(a)
+    print(b)
+    print(bl)
     b1 = bl.split()
     BPM1 = b1[-1].split()[0].split('\\')[0]
-    if BPM1 == "*****":
-        return
     BPM = int(BPM1)
     df = pd.read_csv("HR.csv")
     X = df.iloc[0:, 0].to_numpy()

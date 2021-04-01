@@ -13,9 +13,6 @@ from kivy.uix.label import Label
 #from GPS import ss
 import csv
 from kivy.clock import Clock
-import numpy as np
-import pandas as pd
-from sklearn.ensemble import IsolationForest
 #from Helper import username_helper,password_helper
 #from navigation_drawer import navigation_helper
 Window.size = (340, 580)
@@ -23,6 +20,8 @@ class Login(Screen):
     pass
 class Home(Screen):
     #def sensorrun(self):
+    s = "1"
+    number = 2
 
     pass
 class Schedule(Screen):
@@ -48,31 +47,8 @@ class Autitech(MDApp):
 
     def build(self):
 
-        self.theme_cls.primary_palette = 'Green'
+        self.theme_cls.primary_palette = 'Indigo'
         screen = Builder.load_string(screen_helper)
-        ser = serial.Serial('COM4', 9600)
-        while (1):
-            print("RUN")
-            a = str(ser.readline())
-            b = str(ser.readline())
-            bl = str(ser.readline())
-            b1 = bl.split()
-            BPM = int(b1[-1].split()[0].split('\\')[0])
-            df = pd.read_csv("HR.csv")
-            X = df.iloc[0:, 0].to_numpy()
-            print(BPM)
-            # X_last = X[-1]
-            X[-1] = BPM
-            iso = IsolationForest(contamination=0.1)
-            prf = iso.fit_predict(X.reshape(-1, 1))
-            if prf[-1] == -1:
-                bl1 = b.split()
-                a1 = a.split()
-                lat1 = bl1[-1]
-                long1 = a1[-1]
-                gps = 'https://www.google.com/maps/search/?api=1&query=' + lat1[:-5] + ',' + long1[:-5]
-                print("ALERT!")
-
         return screen
 
     def on_start(self):

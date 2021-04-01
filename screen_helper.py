@@ -9,6 +9,11 @@ ScreenManager:
 
 <Login>:
     name:'login'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'loginpic2.jpeg'
     Image:
         source: "xx.png"
         pos_hint:{'center_x':0.5,'center_y':0.85}
@@ -20,22 +25,28 @@ ScreenManager:
         pos_hint:{'center_x':0.5,'center_y':0.5}
         size_hint:(0.2,0.08)
         on_press : root.manager.current='home'
-    MDTextField:
-        hint_text:"Enter username"
-        helper_text_mode:"on_focus"
+    MDTextFieldRound:
+        icon_left: "email"
+        hint_text: "Enter username"
+        mode: "rectangle"
+        color_active: 1, 1, 1, 1
         pos_hint : {'center_x':0.5,'center_y':0.7}
         size_hint_x:None
-        width:300
-    MDTextField:
-        hint_text:"Enter password"
-        helper_text: "or click on forgot username password"
-        helper_text_mode:"on_focus"
+        width:250
+    MDTextFieldRound:
+        icon_left: 'key-variant'
+        icon_right: 'eye-off'
+        hint_text: "Enter password"
+        color_active: 1, 1, 1, 1
+        
+             
         pos_hint : {'center_x':0.5,'center_y':0.6}
         size_hint_x:None
-        width:300
+        width:250
 
 <Home>:
     name:'home'
+    
 
     NavigationLayout:
         ScreenManager:
